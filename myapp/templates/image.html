@@ -1,0 +1,29 @@
+{% extends 'basic.html' %}
+{% block title %}
+  Image
+{% endblock %}
+{% block body %}
+  <div class="page-wrapper" style="background-color: white;">
+    <div class="container mt-2">
+      <h4>Nomnee Image </h4>
+      {% for i in res %}
+        <div class="cotainer">
+          <img src="/media/{{ i.nImage }}" alt="" style="width: 350px; height: 300px;" />
+        </div>
+      {% endfor %}
+    </div>
+    <div class="container">
+        <h4>Nomnee Document</h4>
+        {% for i in res %}
+        <object data="/media/{{i.nDocument}}" type="application/pdf" width="100%" height="500px">
+            <p>it is a pdf/docx file You First download this file.
+               You can <a href="/media/{{i.nDocument}}" download>download the PDF file.</a>
+            </p>
+        </object>
+        {% comment %} <iframe src="https://docs.google.com/viewer?url=/media/{{i.nDocument}}&embedded=true" style="width: 100%; height: 500px;" frameborder="0"></iframe> {% endcomment %}
+
+        
+        {% endfor %}
+      </div>
+  </div>
+{% endblock %}

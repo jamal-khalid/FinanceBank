@@ -1,0 +1,117 @@
+{% extends "basic.html" %}
+{%block title%}index{%endblock%}
+{% block body %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h2 class="page-title text-dark">Plan Wise Customer List</h2>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              {% comment %} <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol> {% endcomment %}
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Sales Cards  -->
+      <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-3 mb-4 ">
+          <div class="card border-start border-primary border-left-primary shadow h-100 py-2 border-left border-primary" style="border-radius: 8px;" >
+            <a href="/day-wise">
+              <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">DayWise</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+              </div>
+              </div>
+            </a>
+          </div>
+        </div>
+  
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-3 mb-4">
+          <div class="card border-start border-success border-left-success shadow h-100 py-2" style="border-radius: 8px;">
+            <a href="/weekly"><div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Weekly</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div></a>
+          </div>
+        </div>
+  
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-3 mb-4">
+          <div class="card border-start border-info border-left-info shadow h-100 py-2" style="border-radius: 8px;">
+            <a href="/fifteen-days"><div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Fifteen Days</div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div></a>
+          </div>
+        </div>
+  
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-3 mb-4">
+          <div class="card border-start border-warning border-left-warning shadow h-100 py-2" style="border-radius: 8px;">
+            <a href="/report-page"><div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Monthly</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-comments fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div></a>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+{%endblock%}

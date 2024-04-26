@@ -1,0 +1,28 @@
+{% extends "basic.html" %}
+{% block title%}All Transaction{% endblock %}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;">
+    <div class="container-fluid">
+        <p class="text-center mt-1" style="font-size: x-large;">All Transaction</p>
+        <div class="container-fluid">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="fw-bold" style="font-size: larger;">Date</th>
+                    <th class="fw-bold" style="font-size: larger;">Amount</th>
+                    <th class="fw-bold" style="font-size: larger;">Rate(%)</th>
+                    <th class="fw-bold" style="font-size: larger;">Remarks</th>
+                </tr>
+                {% for data in res%}
+                <tr>
+                    <td>{{data.p_date}}</td>
+                    <td>{{data.principal_amount}}</td>
+                    <td>{{data.intrest}}</td>
+                    <td>--</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

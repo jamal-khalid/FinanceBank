@@ -1,0 +1,154 @@
+{% extends 'basic.html' %}
+{% block title %}
+  list
+{% endblock %}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;" >
+  <div class="card-header py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="m-0 font-weight-bold text-primary"> Monthly Customer List
+                </h3>
+            </div>
+            <div class=" col d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" id="paymentButton" >Payment</button>
+                <button class="btn btn-primary" id="returnButton">Return</button>
+                <button class="btn btn-primary" id="viewButton">View</button>
+            </div>
+        </div>
+    </div>
+
+  </div>
+  <div class="page-breadcrumb">
+    <table class="table table-bordered" id="customerTable">
+        <tr>
+            <th >Acc.no</th>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Mobile</th>
+            <th>email</th>
+            <th>City</th>
+            <th>State</th>
+            <th class="text-center">Action</th>
+        </tr>
+        {% for data in res %}
+        <tr class="customer-row" data-account-no="{{ data.account_no }}">
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.account_no}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.name}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.father_name}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.mobile}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.email}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.city}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.state}}</a></td>
+            <td><div class="row">
+              <div class="col-auto">
+                <a href="/edit/{{data.account_no}}/"><button class="btn-sm bg-primary">Edit</button></a>
+                {% comment %} <button class="btn-sm bg-success">Activate</button>
+                <button class="btn-sm bg-danger">DeActivate</button> {% endcomment %}
+              </div>
+            </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      let selectedRowIndex = null;
+      const customerRows = document.querySelectorAll('.customer-row');
+
+      function handleRowSelection(row) {
+          if (selectedRowIndex !== null) {
+              customerRows[selectedRowIndex].classList.remove('selected');
+              customerRows[selectedRowIndex].style.backgroundColor = ''; // Revert to original background color
+              customerRows[selectedRowIndex].style.color = ''; // Revert to original text color
+          }
+          row.classList.add('selected');
+          row.style.backgroundColor = 'rgb(255,165,0)';
+          row.style.color = 'rgb(244 237 235)';
+          selectedRowIndex = Array.from(customerRows).indexOf(row);
+      }
+
+      function openPaymentPage(accountNo) {
+          window.location.href = `/payment-page/${accountNo}/`;
+      }
+
+      function openReturnPage(accountNo) {
+          window.location.href = `/return-page/${accountNo}/`;
+      }
+
+      function openViewPage(accountNo) {
+          window.location.href = `/view-page/${accountNo}/`;
+      }
+
+      function handleKeyDown(event) {
+          if (event.key === 'ArrowDown') {
+              const nextIndex = selectedRowIndex !== null && selectedRowIndex < customerRows.length - 1
+                  ? selectedRowIndex + 1
+                  : 0;
+              handleRowSelection(customerRows[nextIndex]);
+          } else if (event.key === 'ArrowUp') {
+              const prevIndex = selectedRowIndex !== null && selectedRowIndex > 0
+                  ? selectedRowIndex - 1
+                  : customerRows.length - 1;
+              handleRowSelection(customerRows[prevIndex]);
+          } else if (event.key === 'Enter' && selectedRowIndex !== null) {
+              const selectedRow = customerRows[selectedRowIndex];
+              const link = selectedRow.querySelector('a');
+              if (link) {
+                  window.location.href = link.href;
+              }
+          }
+      }
+
+      // Auto select the first row
+      if (customerRows.length > 0) {
+          handleRowSelection(customerRows[0]);
+      }
+
+      customerRows.forEach(row => {
+          row.addEventListener('mouseover', () => {
+              handleRowSelection(row);
+          });
+          row.addEventListener('mouseleave', () => {
+              if (Array.from(customerRows).indexOf(row) !== selectedRowIndex) {
+                  row.classList.remove('selected');
+                  row.style.backgroundColor = ''; // Revert to original background color
+                  row.style.color = ''; // Revert to original text color
+              }
+          });
+      });
+
+      document.addEventListener('keydown', handleKeyDown);
+
+      const paymentButton = document.getElementById('paymentButton');
+      paymentButton.addEventListener('click', () => {
+          const selectedRow = customerRows[selectedRowIndex];
+          const accountNo = selectedRow.querySelector('td a').innerText;
+          openPaymentPage(accountNo);
+      });
+
+      const returnButton = document.getElementById('returnButton');
+      returnButton.addEventListener('click', () => {
+          const selectedRow = customerRows[selectedRowIndex];
+          const accountNo = selectedRow.querySelector('td a').innerText;
+          openReturnPage(accountNo);
+      });
+
+      const viewButton = document.getElementById('viewButton');
+      viewButton.addEventListener('click', () => {
+          const selectedRow = customerRows[selectedRowIndex];
+          const accountNo = selectedRow.querySelector('td a').innerText;
+          openViewPage(accountNo);
+      });
+  });
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,210 @@
+{% extends "basic.html" %}
+{% block title%}Gurranter{% endblock%}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;">
+    <div class="container">
+        <div class="card-header py-3">
+          <h3 class="m-0 font-weight-bold text-primary">Guarranter Detail</h3>
+        </div>
+        <div class="page-breadcrumb">
+          <div>
+              <h4>Guarranter First</h4>
+          </div>
+          <table class="table table-bordered">
+            <tr>
+              <th>Name</th>
+              <th>Father</th>
+              <th>Age</th>
+              <th>Type</th>
+              <th>Relation</th>
+              <th>Mobile</th>
+              <th>Adhar</th>
+              <th>City</th>
+              <th>DOB</th>
+              <th>State</th>
+            </tr>
+              <tr>
+                <td>{{ res.g1name }}</td>
+                <td>{{ res.g1father_name }}</td>
+                <td>{{ res.g1Age }}</td>
+                <td>Guarranter 1</td>
+                <td>{{ res.g1Relation }}</td>
+                <td>{{ res.g1Mobile_NO }}</td>
+                <td>{{ res.g1Adhar_no }}</td>
+                <td>{{ res.g1City }}</td>
+                <td>{{ res.g1DOB }}</td>
+                <td>{{ res.g1State }}</td>
+              </tr>
+          </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="page-breadcrumb">
+              <table class="table table-bordered">
+                <tr>
+                  <div class="col-md-6">
+                    <th><p class="text-center ">Image</p></th>
+                  </div>
+                  <div class="col-md-6">
+                    <th><p class="text-center">Document</p></th>
+                  </div>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        View Image
+                      </button></td>
+                      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        View Document
+                      </button></td>
+                </tr>
+              </table>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel"> Guarranter1 Image</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="overflow: scroll; height: 400px;">
+                        <div class="container" style="background-color: white;">
+                            <div class="container mt-2">
+                                <div class="cotainer">
+                                  <img src="/media/{{ res.g1Image }}" alt="" style="width: 350px; height: 300px;" />
+                                </div>
+                            </div>
+                            
+                          </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel2">Guarranter1 Document</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="background-color: white;">
+    
+                                <object data="/media/{{res.g1Document}}" type="application/pdf" style="overflow: hidden; height: 400px; width: 100%;">
+                                    <p>it is a pdf/docx file You First download this file.
+                                       You can <a href="/media/{{i.g1Document}}" download>download the PDF file.</a>
+                                    </p>
+                                </object>
+                                {% comment %} <iframe src="https://docs.google.com/viewer?url=/media/{{i.nDocument}}&embedded=true" style="width: 100%; height: 500px;" frameborder="0"></iframe> {% endcomment %}
+    
+                          </div>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        <div class="page-breadcrumb">
+          <div>
+              <h4>Guarranter Second</h4>
+          </div>
+          <table class="table table-bordered">
+            <tr>
+              <th>Name</th>
+              <th>Father</th>
+              <th>Age</th>
+              <th>Type</th>
+              <th>Relation</th>
+              <th>Mobile</th>
+              <th>Adhar</th>
+              <th>City</th>
+              <th>DOB</th>
+              <th>State</th>
+              
+            </tr>
+              <tr>
+                <td>{{ res.g2name }}</td>
+                <td>{{ res.g2father_name }}</td>
+                <td>{{ res.g2Age }}</td>
+                <td>Guarranter 2</td>
+                <td>{{ res.g2Relation }}</td>
+                <td>{{ res.g2Mobile_NO }}</td>
+                <td>{{res.g2Adhar_no}}</td>
+                <td>{{ res.g2City }}</td>
+                <td>{{ res.g2DOB }}</td>
+                <td>{{ res.g2State }}</td>
+              </tr>
+          </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="page-breadcrumb">
+              <table class="table table-bordered">
+                <tr>
+                  <div class="col-md-6">
+                    <th><p class="text-center ">Image</p></th>
+                  </div>
+                  <div class="col-md-6">
+                    <th><p class="text-center">Document</p></th>
+                  </div>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guarranter2image">
+                        View Image
+                      </button></td>
+                      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guarranter2document">
+                        View Document
+                      </button></td>
+                </tr>
+              </table>
+              <div class="modal fade" id="guarranter2image" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel3"> Guarranter2 Image</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="overflow: scroll; height: 400px;">
+                        <div class="container" style="background-color: white;">
+                            <div class="container mt-2">
+                                <div class="cotainer">
+                                  <img src="/media/{{ res.g2Image }}" alt="" style="width: 350px; height: 300px;" />
+                                </div>
+                            </div>
+                            
+                          </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="guarranter2document" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel4">Guarranter2 Document</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="background-color: white;">
+    
+                                <object data="/media/{{res.g2Document}}" type="application/pdf" style="overflow: hidden; height: 400px; width: 100%;">
+                                    <p>it is a pdf/docx file You First download this file.
+                                       You can <a href="/media/{{i.g2Document}}" download>download the PDF file.</a>
+                                    </p>
+                                </object>
+                                {% comment %} <iframe src="https://docs.google.com/viewer?url=/media/{{i.nDocument}}&embedded=true" style="width: 100%; height: 500px;" frameborder="0"></iframe> {% endcomment %}
+    
+                          </div>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+</div>
+{% endblock %}

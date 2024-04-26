@@ -1,0 +1,117 @@
+{% extends 'basic.html' %}
+{% block title %}
+  list
+{% endblock %}
+{% block body %}
+{% if res %}
+<div class="page-wrapper" style="background-color: white;" >
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-primary"> Monthly Customer List
+    </h3>
+  </div>
+  <div class="page-breadcrumb">
+    <table class="table table-bordered" id="customerTable">
+        <tr>
+            <th>Acc.no</th>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Mobile</th>
+            <th>email</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Edit</th>
+            <th class="text-center">Action</th>
+        </tr>
+        {% for data in res %}
+        <tr class="customer-row {% if not data.is_active %}inactive-row{% endif %}" data-account-no="{{ data.account_no }}">
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.account_no}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.name}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.father_name}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.mobile}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.email}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.city}}</a></td>
+            <td><a href="/action/{{data.account_no}}" class="text-dark">{{data.state}}</a></td>
+            <td><a href="/edit/{{data.account_no}}/"><button class="btn-sm bg-primary">Edit</button></a></td>
+            <td>
+                <div class="row">
+                    <div class="col-auto">
+                        {% if data.is_active %}
+                            <a href="{% url 'toggle_active' data.id %}?status=inactive" class="btn-sm bg-danger text-light">Deactivate</a>
+                        {% else %}
+                            <a href="{% url 'toggle_active' data.id %}?status=active" class="btn-sm bg-success text-light">Activate</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% else %}
+<h4 class="text-center">No Data Available to Show </h4>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      let selectedRowIndex = null;
+      const customerRows = document.querySelectorAll('.customer-row');
+
+      function handleRowSelection(row) {
+          if (selectedRowIndex !== null) {
+              customerRows[selectedRowIndex].classList.remove('selected');
+              customerRows[selectedRowIndex].style.backgroundColor = ''; // Revert to original background color
+              customerRows[selectedRowIndex].style.color = ''; // Revert to original text color
+          }
+          row.classList.add('selected');
+          row.style.backgroundColor = '#f18797';
+          row.style.color = 'rgb(244 237 235)';
+          selectedRowIndex = Array.from(customerRows).indexOf(row);
+      }
+
+      function handleKeyDown(event) {
+          if (event.key === 'ArrowDown') {
+              const nextIndex = selectedRowIndex !== null && selectedRowIndex < customerRows.length - 1
+                  ? selectedRowIndex + 1
+                  : 0;
+              handleRowSelection(customerRows[nextIndex]);
+          } else if (event.key === 'ArrowUp') {
+              const prevIndex = selectedRowIndex !== null && selectedRowIndex > 0
+                  ? selectedRowIndex - 1
+                  : customerRows.length - 1;
+              handleRowSelection(customerRows[prevIndex]);
+          } else if (event.key === 'Enter' && selectedRowIndex !== null) {
+              const selectedRow = customerRows[selectedRowIndex];
+              const link = selectedRow.querySelector('a');
+              if (link) {
+                  window.location.href = link.href;
+              }
+          }
+      }
+
+      // Auto select the first row
+      if (customerRows.length > 0) {
+          handleRowSelection(customerRows[0]);
+      }
+
+      customerRows.forEach(row => {
+          row.addEventListener('mouseover', () => {
+              handleRowSelection(row);
+          });
+          row.addEventListener('mouseleave', () => {
+              if (Array.from(customerRows).indexOf(row) !== selectedRowIndex) {
+                  row.classList.remove('selected');
+                  row.style.backgroundColor = ''; // Revert to original background color
+                  row.style.color = ''; // Revert to original text color
+              }
+          });
+      });
+
+      document.addEventListener('keydown', handleKeyDown);
+  });
+</script>
+{% endblock %}

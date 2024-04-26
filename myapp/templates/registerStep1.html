@@ -1,0 +1,333 @@
+{% extends 'basic.html' %}
+{% block title %}
+  register
+{% endblock %}
+{% block body %}
+  <div class="page-wrapper mt-1 " style="background-color:white;">
+    <div class="container">
+      <div class="row">
+        <div class="col-auto border " style="border-radius: 20px; background-color: #f13b07; background-color: #f13b07; box-sizing: border-box; height: 35px;" >
+          <h5 class="text-light text-center" style="padding-bottom: 0px; margin-top:6px;">Customer Registration</h5>
+        </div>
+        <!--<div class="col-md-1"></div>-->
+        <div class="col-auto border " style="border-radius: 20px; background-color: #f13b07; background-color: #f13b07; box-sizing: border-box; height: 35px;">
+          <h5 id="plan" class="text-light text-center" style="padding: 0px; margin-top:6px;"></h5>
+        </div>
+        <div class="col-md-4">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="inputPassword6" class="col-form-label" style="font-size: medium;">Select Person</label>
+            </div>
+            <div class="col">
+              <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mt-1" style="border: 1px solid; margin-left: 4px; margin-right: 4px;">
+        <form method="post" action="{% url 'registration_view' 1 %}" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="Cname" class="col-form-label" style="font-size: larger;">Customer Name</label>
+                </div>
+                <div class="col">
+                  <input name="rname" type="text" id="Cname" class="form-control" aria-describedby="passwordHelpInline" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="Cfname" class="col-form-label" style="font-size: larger;">Father 's  Name &nbsp; </label>
+                </div>
+                <div class="col">
+                  <input name="rfname" type="text" id="Cfname" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <div class="row">
+                <div class="form-group col-auto">
+                  <label for="inputEmail4">Date Of Birth</label>
+                  <input type="date" name="rdob" class="form-control" id="dateinput" required />
+                </div>
+                <div class="form-group col-auto">
+                  <label for="inputEmail4">Age</label>
+                  <input type="text" name="age" class="form-control" id="ageinput" />
+                </div>
+                <div class="col-auto mt-4">
+                  <label for="inputEmail4">Gender</label>
+                </div>
+                <div class="col" style="padding: 10px; border: 1px solid;margin:10px;">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" />
+                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female" />
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Othher" />
+                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="Cprofession" class="col-form-label" style="font-size: larger;">Profession</label>
+                </div>
+                <div class="col-md-5">
+                  <input type="text" name="profession" id="Cprofession" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                  <label for="Cemail" class="col-form-label" style="font-size: larger;">Email</label>
+                </div>
+                <div class="col">
+                  <input type="email" name="remail" id="Cemail" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="Cmobile" class="col-form-label" style="font-size: larger;">Mobile no.</label>
+                </div>
+                <div class="col-md-5">
+                  <input type="text"  name="mobile" id="Cmobile" class="form-control" aria-describedby="passwordHelpInline" oninput="validateNumber(this)">
+                </div>
+                <div class="col-auto">
+                  <label for="Calter_mobile" class="col-form-label" style="font-size: larger;">Alternate Mobile no</label>
+                </div>
+                <div class="col">
+                  <input type="text" name="alter_mobile" id="Calter_mobile" class="form-control" aria-describedby="passwordHelpInline" oninput="validateNumber(this)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mt-1" align="center">
+            <img id="preview-image" class="img" src="" height="250px;" width="250px;" />
+            <input type="file" name="pic" class="form-control" id="inputPassword4"  />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="Cadress" class="col-form-label" style="font-size: larger;">Permanent Address</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="raddress" id="Cadress" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="Ccity" class="col-form-label" style="font-size: larger;">City</label>
+            </div>
+            <div class="col">
+              <input type="text" name="city" id="Ccity" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="Cdistrict" class="col-form-label" style="font-size: larger;">District</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" name="district" id="Cdistrict" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="Cstate" class="col-form-label" style="font-size: larger;">State</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" name="state" id="Cstate" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="Cpin" class="col-form-label" style="font-size: larger;">Pin</label>
+            </div>
+            <div class="col">
+              <input type="text" name="pincode" id="Cpin" class="form-control" aria-describedby="passwordHelpInline" oninput="validatePincode(this)">
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="Cremarks" class="col-form-label" style="font-size: larger;">Remarks</label>
+            </div>
+            <div class="col-md-6">
+              <textarea id="Cremarks" name="remarks" class="form-control" aria-describedby="passwordHelpInline"></textarea>
+            </div> 
+            <div class="col-auto">
+              <label for="Cupload" class="col-form-label" style="font-size: larger;">Upload Document</label>
+            </div>
+            <div class="col">
+              <input type="file" id="Cupload" name="Document" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-1" >
+        <div class="col-md-6">
+            <input type="hidden" name="duration" >
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary" name="reg">Save and Next</button>
+         </form>
+          <a id="editButton"><button class="btn btn-primary" >Edit</button></a>
+          <a href="javascript:history.go(-1)"><button class="btn btn-primary">Back</button></a>
+        </div>
+        
+      </div>
+    
+  </div>
+{% endblock %}
+
+{% block js %}
+{% comment %} <script> {% endcomment %}
+    {% comment %} // Function to display the selected image
+     function previewImage(input) {
+      var preview = document.getElementById('preview-image');
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        preview.src = '';
+      }
+    }
+  
+    // Attach an event listener to the file input {% endcomment %}
+    
+  {% comment %} </script> {% endcomment %}
+  <script>
+    $(document).ready(function() {
+      // Function to calculate age
+      function calculateAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        return age;
+      }
+
+      // Event listener for the date of birth input
+      $('#dateinput').change(function() {
+        var dob = $(this).val();
+        var age = calculateAge(dob);
+
+        // Set the calculated age in the age input field
+        $('#ageinput').val(age);
+      });
+
+      // Event listener for the age input
+      $('#ageinput').change(function() {
+        var age = $(this).val();
+
+        // Calculate the birth year based on the entered age
+        var birthYear = new Date().getFullYear() - age;
+
+        // Set the calculated birth year in the date of birth input field
+        $('#dateinput').val(birthYear + '-01-01'); // Assuming January 1 for simplicity
+      });
+
+      // Event listener for the file input (for image preview)
+      function previewImage(input) {
+        var preview = document.getElementById('preview-image');
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            preview.src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          preview.src = '';
+        }
+      }
+
+      var fileInput = document.querySelector('input[name="pic"]');
+      fileInput.addEventListener('change', function() {
+        previewImage(this);
+      });
+    });
+
+    const referringPage = document.referrer;
+    console.log(referringPage)
+    const editButton = document.getElementById('editButton');
+    if (referringPage.includes("Monthlyoption")) {
+      setDuration('Monthly');
+      editButton.href = '/monthlyList';
+      document.getElementById('plan').innerText='Monthly';
+    }else if (referringPage.includes("FifteenOption")){
+      setDuration('fifteen_days');
+      document.getElementById('plan').innerText='Fifteen Days';
+      document.getElementById('inlineRadio1').checked=true;
+    } else if (referringPage.includes('WeeklyOption')){
+      setDuration('Weekly');
+      document.getElementById('inlineRadio1').checked=true;
+      document.getElementById('plan').innerText='Weekly';
+    }else if (referringPage.includes('Daywise')){
+      setDuration('Daywise');
+      document.getElementById('plan').innerText='DayWise';
+      document.getElementById('inlineRadio1').checked=true;
+    }else{
+
+    }
+    
+    function setDuration(value) {
+      // Set the value of the hidden input field
+      document.getElementsByName('duration')[0].value = value;
+    }
+    
+    function validateNumber(input) {
+      // Remove non-numeric characters
+      input.value = input.value.replace(/\D/g, '');
+  
+      // Limit the length to 10 characters
+      if (input.value.length > 10) {
+        input.value = input.value.slice(0, 10);
+      }
+    }
+    
+    function validatePincode(input) {
+      // Remove non-numeric characters
+      input.value = input.value.replace(/\D/g, '');
+  
+      // Limit the length to 10 characters
+      if (input.value.length > 6) {
+        input.value = input.value.slice(0, 6);
+      }
+    }
+  </script>
+
+  
+{%endblock%}

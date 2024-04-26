@@ -1,0 +1,91 @@
+{% extends "basic.html" %}
+{%block title%}Options{%endblock%}
+{% block body %}
+<div class="page-wrapper">
+
+    <div class="page-breadcrumb">
+        <div class="row">
+          <div class="col-12 d-flex no-block align-items-center">
+            <h2 class="page-title text-dark">What Do You Want To Do</h2>
+            <div class="ms-auto text-end">
+              <nav aria-label="breadcrumb">
+                {% comment %} <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Library
+                  </li>
+                </ol> {% endcomment %}
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Sales Cards  -->
+        <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-3 mb-4 ">
+                <div class="card border-start border-primary border-left-primary shadow h-100 py-2 border-left border-primary"
+                    style="border-radius: 8px;">
+                    <a href="/register/1">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Add Customer
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-3 mb-4">
+                <div class="card border-start border-success border-left-success shadow h-100 py-2"
+                    style="border-radius: 8px;">
+                    <a href="/weekly">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Customer List
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+
+
+            <!-- Pending Requests Card Example -->
+
+
+        </div>
+
+    </div>
+</div>
+
+{%endblock%}

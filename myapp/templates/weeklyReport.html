@@ -1,0 +1,387 @@
+{% extends 'basic.html' %}
+{% block title %}
+  Weekly Dashboard
+{% endblock %}
+
+{% block css %}
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  #speedometer-container {
+    position: relative;
+    z-index: 2; /* Ensure this is higher than other elements */
+    margin-top: 100px; /* Adjust the margin as needed */
+  }
+  
+  #speedometer {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  #indicator {
+    width: 5px;
+    height: 80px;
+    background-color: red;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%) rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+  
+  #score {
+    font-size: 24px;
+    margin-top: 20px;
+    color: white;
+  }
+  
+</style>
+{% endblock %}
+{% block body %}
+  {% load static %}
+  <div class="page-wrapper" style="background-color: white;">
+    <p class="mt-1" style="margin-left: 7%;">RANKS FINANCE - Report Dashboard (Week)</p>
+    <div class="container border">
+      <div class="row">
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Principal</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="99,99,99,99,99." />
+        </div>
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Intrest</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="9999999" />
+        </div>
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Fine</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="99999" />
+        </div>
+        <div class="col">
+          <h3 class="mt-2">Week</h3>
+        </div>
+        <div class="col-md-1 mt-2">
+          <button class="btn me-md-2" style="border-radius: 0%; background-color: #f9c5ca;">Support</button>
+        </div>
+        <div class="col-md-2 mt-2">
+          <button class="btn me-md-2" style="border-radius: 0%; background-color: #e5e3e5;">About us</button>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-md-8 border">
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Ranks FINANCE</h3>
+            </div>
+            <div class="col-md-4">
+              <img src="{% static 'assets/images/logo-icon.png' %}" alt="" />
+            </div>
+            <div class="col-md-4">
+              <h1>REPORT</h1>
+            </div>
+          </div>
+          <hr />
+          <br />
+          <br />
+          <br />
+
+          <p style="padding: 0%; margin-bottom: 0%;">Report</p>
+          <div class="container">
+            <div class="row border">
+              <div class="col my-2">
+                <button class="btn btn-sm" style="background-color: #f9c5ca;  border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                  </svg>All EMI
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                  </svg>All Dues
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                  </svg>All Transaction
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                  </svg>Daily
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                  </svg>Datewise
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                  </svg>Business Transaction
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <p style=" margin-bottom: 0%;">others</p>
+              <div class="col-md-8 border">
+                <button class="btn btn-sm my-2" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483m.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535m-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z" />
+                    <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
+                    <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
+                  </svg>Backup History
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                  </svg>Sms History
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0M4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5m7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                  </svg>RateWise Principal
+                </button>
+              </div>
+              <div class="col border" style="margin-left: 2px;">
+                <button class="btn btn-sm my-2" style="background-color: #e5e3e5; border-radius: 0%;"><i class="bi bi-0-circle"></i>Current</button>
+                <button class="btn btn-sm my-2" style="background-color: #e5e3e5; border-radius: 0%;">Missing</button>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <p style=" margin-bottom: 0%;">customer</p>
+              <div class="col-md-8 mb-2 border">
+                <button class="btn btn-sm my-2" style="background-color: #a6c4e7; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                  </svg>All
+                </button>
+                <button class="btn btn-sm" style="background-color: #f9c5ca;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                  </svg>Active
+                </button>
+                <button class="btn btn-sm" style="background-color: #f72035;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                  </svg>BlackList
+                </button>
+                <button class="btn btn-sm" style="background-color: #f59a52;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+                  </svg>Welfare
+                </button>
+                <button class="btn btn-sm" style="background-color: #a6c4e7;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z" />
+                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z" />
+                  </svg>Cibil Score
+                </button>
+              </div>
+              <div class="col border mb-2" style="margin-left: 2px;">
+                <button class="btn btn-sm my-2" style="background-color: #e5e3e5; border-radius: 0%;">BackDues</button>
+                <button class="btn btn-sm my-2" style="background-color: #e5e3e5; border-radius: 0%;">CurrentDues</button>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row border">
+              <div class="col mt-2">
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5; border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                    <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z" />
+                  </svg>Area
+                </button>
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                    <!-- ! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M616 192H480V24c0-13.26-10.74-24-24-24H312c-13.26 0-24 10.74-24 24v72h-64V16c0-8.84-7.16-16-16-16h-16c-8.84 0-16 7.16-16 16v80h-64V16c0-8.84-7.16-16-16-16H80c-8.84 0-16 7.16-16 16v80H24c-13.26 0-24 10.74-24 24v360c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V216c0-13.26-10.75-24-24-24zM128 404c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm128 192c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12V76c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 288c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40z" />
+                  </svg>City
+                </button>
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                    <!-- ! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M616 192H480V24c0-13.26-10.74-24-24-24H312c-13.26 0-24 10.74-24 24v72h-64V16c0-8.84-7.16-16-16-16h-16c-8.84 0-16 7.16-16 16v80h-64V16c0-8.84-7.16-16-16-16H80c-8.84 0-16 7.16-16 16v80H24c-13.26 0-24 10.74-24 24v360c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V216c0-13.26-10.75-24-24-24zM128 404c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm128 192c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12V76c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 288c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40z" />
+                  </svg>Distict
+                </button>
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16" style="margin-bottom: 4px;">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                  </svg>Relation
+                </button>
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+                    <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                    <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+                  </svg>Profession
+                </button>
+                <button class="btn btn-sm mb-2" style="background-color: #ecdba5;border-radius: 0%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z" />
+                  </svg>Document
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col border" style="margin-left: 2px;">
+          <p>this</p>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-2">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Principal Amount</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">Start Fine</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Cibil Score</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Principal Amount</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Acc No.</span></label>
+                  <input type="text" class="form-control mt-2" id="input1" placeholder="C001" style="height: 60px; font-size: large;" />
+                </div>
+                <div class="col px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Old Limit</span></label>
+                  <div class="form-control mt-2" id="input1" style="height: 60px;">
+                    <input class="form-control mt-1" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">New Limit</span></label>
+                  <div class="form-control mt-2" style="height: 60px;">
+                    <input class="form-control mt-1" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" />
+                  </div>
+                  {% comment %} <input type="text" class="form-control mt-2" id="input1" placeholder="C001" style="height: 60px;" /> {% endcomment %}
+                </div>
+                <div class="col">
+                  <button class="mt-3" style="width: 120px; height: 60px; border-color: white; font-size: large;"><i class="fas fa-save" style="font-size: x-large; padding-left: 0%;"></i>SAVE</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Civil Score</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <img src="{% static 'assets/images/bg.jpeg' %}" alt="" />
+              <div id="speedometer-container">
+                <div id="speedometer">
+                  <div id="indicator"></div>
+                </div>
+              
+                <div id="score">CIBIL Score: <span id="scoreValue">550</span></div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Start Fine</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Acc No.</span></label>
+                  <input type="text" class="form-control mt-2" id="input1" placeholder="C001" style="height: 60px; font-size: large;" />
+                </div>
+                <div class="col px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Old Fine</span></label>
+                  <div class="form-control mt-2" id="input1" style="height: 60px;">
+                    <input class="form-control mt-1" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 px-1 mb-1 mt-2">
+                  <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">New Fine</span></label>
+                  <div class="form-control mt-2" style="height: 60px;">
+                    <input class="form-control mt-1" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" />
+                  </div>
+                  {% comment %} <input type="text" class="form-control mt-2" id="input1" placeholder="C001" style="height: 60px;" /> {% endcomment %}
+                </div>
+                <div class="col">
+                  <button class="mt-3" style="width: 120px; height: 60px; border-color: white; font-size: large;"><i class="fas fa-save" style="font-size: x-large; padding-left: 0%;"></i>SAVE</button>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col">
+                  <p class="text-center">Rs 0.00 will be applied on Rs 1.00.000.00 by per Day</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  // Set your CIBIL score here
+  const cibilScore = 550;
+
+  // Function to update the speedometer and score based on the CIBIL score
+  function updateSpeedometer(score) {
+    const indicator = document.getElementById('indicator');
+    const scoreValue = document.getElementById('scoreValue');
+
+    const angle = ((score - 300) / 550) * 180; // Assuming CIBIL score ranges from 300 to 850
+
+    indicator.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+    scoreValue.innerText = score;
+  }
+
+  // Initial update
+  updateSpeedometer(cibilScore);
+</script>
+{% endblock %}

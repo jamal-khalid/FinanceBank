@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  {%load static %}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="keywords"
+      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template"
+    />
+    <meta
+      name="description"
+      content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{% block title %} Matrix Admin Lite Free Versions Template by WrapPixel {% endblock %}</title>
+    <!-- Favicon icon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/images/favicon.png"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" />
+
+    <!-- Custom CSS -->
+    <link href="{% static 'assets/libs/flot/css/float-chart.css' %} " rel="stylesheet"  />
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/style.min.css' %} " rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        #navbarSupportedContent {
+            background: rgb(0,0,67)!important;
+        }
+        .left-sidebar[data-sidebarbg=skin5] ul {
+            background: rgb(0,0,67)!important;
+        }
+        {% comment %} body{
+            background: #ffb848!important;
+        } {% endcomment %}
+        #homepagelogo{
+            border-radius: 50%;
+        }
+        .sidebar-nav ul .sidebar-item .sidebar-link{
+          opacity: 1;
+        }
+
+        
+
+    </style>
+  </head>
+  <body>
+    {% for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dismissible text-center fade show mb-0" role="alert">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+    <div class="preloader">
+        <div class="lds-ripple">
+          <div class="lds-pos"></div>
+          <div class="lds-pos"></div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- Main wrapper - style you can find in pages.scss -->
+      <!-- ============================================================== -->
+      <div
+        id="main-wrapper"
+        data-layout="vertical"
+        data-navbarbg="skin5"
+        data-sidebartype="full"
+        data-sidebar-position="absolute"
+        data-header-position="absolute"
+        data-boxed-layout="full"
+      >
+      
+      
+
+      <aside class="left-sidebar" data-sidebarbg="skin5" style="background-color: rgb(0,0,67);">
+        <!-- Sidebar scroll-->
+        <div class="">
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav ">
+            <a class="navbar-brand " href="/" style="padding: 0%; margin: 0%;">
+              <!-- Logo icon -->
+              <b class="logo-icon">
+                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                <!-- Dark Logo icon -->
+                <img id='homepagelogo'
+                  src="{% static 'assets/images/logo-icon.png' %}"
+                  class="light-logo  ms-2"
+                  width="50"
+                />
+              </b>
+      
+            </a>
+            <ul id="sidebarnav" class="pt-4">
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/dashboard"
+                  aria-expanded="false"
+                  ><i class="fas fa-fw fa-tachometer-alt"></i
+                  ><span class="hide-menu text-light">Dashboard</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="fas fa-fw fa-cog"></i
+                  ><span class="hide-menu text-light ">Customer List</span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <div class="card border-box m-2 bg-light" style="border-radius: 8px;">
+                  <li class="sidebar-item">
+                    <a href="/day-wise" class="sidebar-link"
+                      > <span class="hide-menu text-dark p-1 "> Day Wise </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/weekly" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1 "> Weekly </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/fifteen-days" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1 "> 15 Days </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/monthly" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1 "> Monthly </span></a
+                    >
+                  </li>
+                </div>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="fas fa-fw fa-cog"></i
+                  ><span class="hide-menu text-light ">Loan </span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <div class="card border-box m-2 bg-light" style="border-radius: 8px;">
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1 "> Loan Approved list </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1"> Loan Unaproved list </span></a
+                    >
+                  </li>
+                  </div>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="fas fa-fw fa-cog"></i
+                  ><span class="hide-menu text-light ">Gurranter</span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <div class="card border-box m-2 bg-light" style="border-radius: 8px;">
+                  <li class="sidebar-item">
+                    <a href="/guaranter-page1" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1 ">Guarranter List 1</span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/guaranter-page2" class="sidebar-link"
+                      ><span class="hide-menu text-dark p-1">Guarranter List 2</span></a
+                    >
+                  </li>
+                  </div>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/calculate"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-pencil"></i
+                  ><span class="hide-menu text-light ">EMI Calculator</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/rateWise"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-pencil"></i
+                  ><span class="hide-menu text-light">Rate Wise Principal</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/CurrentDuesDashboard"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-pencil"></i
+                  ><span class="hide-menu text-light">Current Dues</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="#"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-pencil"></i
+                  ><span class="hide-menu text-light">Pay</span></a
+                >
+              </li>
+
+            </ul>
+          </nav>
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+
+      {% block body %}
+      
+
+
+
+
+      {% endblock %}
+
+    </div>
+
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %} " ></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %} "></script>
+    <script src="{% static '/assets/extra-libs/sparkline/sparkline.js'%}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'dist/js/waves.js' %} "></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'dist/js/sidebarmenu.js' %} "></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'dist/js/custom.min.js' %} "></script>
+    <!--This page JavaScript -->
+    <!-- <script src="../dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="{% static 'assets/libs/flot/excanvas.js' %} "></script>
+    <script src="{% static 'assets/libs/flot/jquery.flot.js' %} "></script>
+    <script src="{% static 'assets/libs/flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'assets/libs/flot/jquery.flot.time.js' %} "></script>
+    <script src="{% static 'assets/libs/flot/jquery.flot.stack.js' %} "></script>
+    <script src="{% static 'assets/libs/flot/jquery.flot.crosshair.js' %} "></script>
+    <script src="{% static 'assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js' %} "></script>
+    <script src="{% static 'dist/js/pages/chart/chart-page-init.js' %} "></script>
+    {% block js %}
+
+    {% endblock %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

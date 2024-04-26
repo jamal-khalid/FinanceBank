@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <p class="fw-bold">Current Dues</p>
+      <div class="container-fluid border">
+        <div class="row mt-1" style="margin-bottom: 5px;">
+          <div class="col-auto mt-1">
+            <button class="btn border" style="height: 33px;">Rupp</button>
+          </div>
+          <div class="col-auto" style="margin-right: 8px;">
+            <div class="row border" style="height: 33px; margin-top: 4px;">
+              <div class="col" style="margin-top: 2px;">
+                <button class="btn-sm border">10</button>
+              </div>
+              <div class="col">
+                <p>73page</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto" style="margin-right: 8px;">
+            <div class="row border mt-1">
+              <div class="col-auto" style="margin-top: 2px; margin-bottom: 4px;">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 24px; padding: 0%;">Dropdown button</button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">Action</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="row mt-1" style="height: 33px;">
+              <div class="col" style="height: 35px;">
+                <input type="month" id="monthInput" onchange="updateTable()" value="{{ current_month|date:'Y-m' }}" />
+              </div>
+            </div>
+          </div>
+          <div class="col d-grid gap-2 d-md-flex justify-content-md-end mt-1" style="height: 33px;">
+            <button class="btn border me-md-2" type="button" style="background-color: #f0cad0db;">Support</button>
+            <button class="btn border" type="button" style="background-color: #f0cad0db;">About us</button>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid border mt-4">
+        <table class="table table-bordered mt-1" id="customerTable">
+          <tr>
+            <th style="width: 8px;">SL</th>
+            <th style="width: 20px;">Acc.no</th>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Adress</th>
+            <th>Area</th>
+            <th>Previous</th>
+            <th>Current</th>
+            <th>Paid</th>
+            <th>total</th>
+            <th>Fine</th>
+          </tr>
+          {% for data in res %}
+            <tr class="customer-row" data-account-no="{{ data.account_no }}">
+              <td style="padding:3px;">
+                {{data.id}}
+              </td>
+              <td style="padding:3px;">
+                {{ data.account_no }}
+              </td>
+              <td style="padding:3px;">
+                {{ data.name }}             </td>
+              <td style="padding:3px;">
+                {{ data.father_name }}
+              </td>
+              <td style="padding:3px;">
+                {{data.adress}}
+              </td>
+              <td style="padding:3px;">
+                --
+              </td>
+              <td style="padding:3px;">
+                {{ data.PrevDues }}
+              </td>
+              <td style="padding:3px;">
+                {{ data.mInterest }}
+              </td>
+              <td style="padding:3px;">
+                {{ data.Pint }}
+              </td>
+              <td style="padding:3px;">
+                {{ data.total }}
+              </td>
+              <td style="padding:3px;">
+                --
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        function updateTable() {
+            var selectedMonth = $('#monthInput').val();
+            $.ajax({
+                url: '/myapp/fetch_data/',  // Ensure this URL matches your actual URL pattern
+                data: { selected_month: selectedMonth },
+                dataType: 'json',
+                success: function (data) {
+                    var noDataParagraph = $('#noDataParagraph');
+                    if (data.data && data.data.length > 0) {
+                        noDataParagraph.hide();
+                        updateTableWithData(data.data);
+                    } else {
+                        noDataParagraph.show();
+                    }
+                },
+                error: function (error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        }
+
+        function updateTableWithData(data) {
+            var rows = $('.customer-row');
+            for (var i = 0; i < rows.length; i++) {
+                var cells = $(rows[i]).find('td');
+                // Update the table cells with data from the fetched JSON
+                // (You need to customize this part based on your actual data structure)
+                cells.eq(6).text(data[i].PrevDues);
+                cells.eq(7).text(data[i].mInterest);
+                // Update other fields accordingly...
+            }
+        }
+
+        // Initial call to updateTable to set the default month (current month)
+        updateTable();
+    </script>
+  </body>
+</html>

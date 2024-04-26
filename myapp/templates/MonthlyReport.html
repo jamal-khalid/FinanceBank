@@ -1,0 +1,118 @@
+{% extends 'basic.html' %}
+{% block title %}
+  MOnthly Report
+{% endblock %}
+{% block body %}
+  {% load static %}
+  <div class="page-wrapper" style="background-color: white;">
+    <div class="container mt-2" style="background-color: #bfc6cc;">
+      <div class="row">
+        <div class="col">
+          <button class="btn">Customer</button>
+          <button class="btn">Loan</button>
+          <button class="btn">Utility</button>
+          <button class="btn">About</button>
+          <button class="btn">Setting</button>
+        </div>
+      </div>
+    </div>
+    <p class="mt-1" style="margin-left: 7%;">RANKS FINANCE - Report Dashboard (Month)</p>
+    <div class="container border">
+      <div class="row">
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Principal</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="99,99,99,99,99." />
+        </div>
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Intrest</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="9999999" />
+        </div>
+        <div class="col-md-2 px-1 mb-1 mt-2">
+          <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1">Fine</span></label>
+          <input type="text" class="form-control mt-2" id="input1" placeholder="99999" />
+        </div>
+        <div class="col">
+          <h3 class="mt-2">MONTH</h3>
+        </div>
+        <div class="col mt-2">
+          <button class="btn me-md-2" style="border-radius: 0%; background-color: #f9c5ca;"><i class="fas fa-bowling-ball"></i>Support</button>
+          <button class="btn me-md-2" style="border-radius: 0%; background-color: #e5e3e5;"><i class="fas fa-check-square"></i>About us</button>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-md-8 border">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="{% static 'assets/images/logo-icon.png' %}" alt="" />
+              <h3>Ranks FINANCE</h3>
+            </div>
+            <div class="col-md-4 mt-2">
+              <img src="{% static 'assets/images/logo-icon.png' %}" alt="" width="100px" />
+            </div>
+            <div class="col-md-4 mt-3">
+              <h1 class="text-primary">Dashboard</h1>
+            </div>
+          </div>
+          <hr />
+          <br />
+          <br />
+          <br />
+          <div class="col">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+        <div class="col border" style="margin-left: 2px;">
+          <img src="{% static 'assets/images/logo-icon.png' %}" alt="" style="width: 100%;" />
+          
+        </div>
+      </div>
+    </div>
+    <div class="container mt-2">
+      <div class="row">
+        <div class="col-md-8 border">
+          <button class="btn my-2" type="button" style="background-color: #e5e3e5;"><i class="fa fa-plus"></i>Customer</button>
+          <button class="btn my-2" type="button" style="background-color: #e5e3e5;"><i class="fa fa-plus"></i>Area</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block js %}
+  <script>
+    var ctxB = document.getElementById('barChart').getContext('2d')
+    var myBarChart = new Chart(ctxB, {
+      type: 'bar',
+      data: {
+        labels: ['November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
+        datasets: [
+          {
+            label: 'Principal Amount',
+            data: [6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+            backgroundColor: ['rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)'],
+            borderColor: ['rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)', 'rgba(128, 0, 128, 1)'],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              categoryPercentage: 0.8,
+              barPercentage: 0.9
+            }
+          ]
+        }
+      }
+    })
+  </script>
+{% endblock %}

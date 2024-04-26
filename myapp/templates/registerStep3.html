@@ -1,0 +1,257 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+  Nomnee
+{% endblock %}
+{% block body %}
+<div class="page-wrapper">
+  <div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Nomnee</h6>
+      </div>
+      <form method="post" enctype="multipart/form-data" action="{% url 'registration_view' 3 %}">
+        {% csrf_token %}
+        <div class="card-body">
+          <div classs="container-fluid">
+            <div class="row">
+              <div style="border: 1px solid;padding:10px;" class="col-md-12">
+                <div class="row">
+                  <p style="margin-left:10px;">Nomnee</p>
+                </div>
+                <div class="row">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group col-md-12">
+                        <label for="inputEmail4">Name</label>
+                        <input type="text" name="Nname" class="form-control" id="inputEmail4" />
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputEmail4">Father Name</label>
+                        <input type="text" name="Nfname" class="form-control" id="inputEmail4" />
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputEmail4">Mother Name</label>
+                        <input type="text" name="Nmname" class="form-control" id="inputEmail4" />
+                      </div>
+                      <div style="margin-left:10px;" class="row">
+                        <div class="form-group col-md-8">
+                          <label for="inputEmail4">Date Of Birth</label>
+                          <input type="date" name="Ndob" class="form-control" id="dateinput3" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputEmail4">Age</label>
+                          <input type="text" name="Nage" class="form-control" id="ageinput3" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" align="center">
+                      <img id="preview-image" class="img" src="" height="250px;" width="250px;" />
+                      <input type="file" name="Npic" class="form-control" id="inputPassword4" required="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Address</label>
+                    <textarea name="Nadresh" rows="1" cols="5" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <div class="col-md-12">
+                      <label>
+                        <p>Area</p>
+                        <input list="browsers" name="Narea" class="form-control" />
+                      </label>
+                      <datalist id="browsers">
+                        <option value="Patna"></option>
+                        <option value="Bihar"></option>
+                        <option value="Jharkhand"></option>
+                        <option value="Opera"></option>
+                        <option value="Safari"></option>
+                        <option value="Microsoft Edge"></option>
+                      </datalist>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label>
+                    <p>City</p>
+                    <input list="browsers" name="Ncity" class="form-control" />
+                    </label>
+                    <datalist id="browsers">
+                        <option value="Patna"></option>
+                        <option value="Bihar"></option>
+                        <option value="Jharkhand"></option>
+                        <option value="Opera"></option>
+                        <option value="Safari"></option>
+                        <option value="Microsoft Edge"></option>
+                    </datalist>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                      <label>
+                        <p>District</p>
+                        <input list="browsers" name="Ndistrict" class="form-control" />
+                      </label>
+                      <datalist id="browsers">
+                        <option value="Patna"></option>
+                        <option value="Bihar"></option>
+                        <option value="Jharkhand"></option>
+                        <option value="Opera"></option>
+                        <option value="Safari"></option>
+                        <option value="Microsoft Edge"></option>
+                      </datalist>
+                    </div>
+                    <div class="col-md-3">
+                      <label>
+                        <p>State</p>
+                        <input list="browsers" name="Nstate" class="form-control" />
+                      </label>
+                      <datalist id="browsers">
+                        <option value="Patna"></option>
+                        <option value="Bihar"></option>
+                        <option value="Jharkhand"></option>
+                        <option value="Opera"></option>
+                        <option value="Safari"></option>
+                        <option value="Microsoft Edge"></option>
+                      </datalist>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail4">Relation</label>
+                        <input type="text" name="Nrelation" class="form-control" id="inputEmail4" />
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">Mobile No.</label>
+                        <input type="text" name="Nmobile" class="form-control" id="inputEmail4" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">Aadhar No</label>
+                        <input type="text" name="Nadhar" class="form-control" id="inputEmail4" maxlength="12" />
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail4">Document Upload</label>
+                        <input type="file" name="Ndocument" class="form-control" id="inputEmail4" />
+                    </div>
+                </div>
+                    <!--<div class="col-md-12">-->
+                    <!--  <label>-->
+                    <!--    <p>District</p>-->
+                    <!--    <input list="browsers" name="Ndistrict" class="form-control" />-->
+                    <!--  </label>-->
+                    <!--  <datalist id="browsers">-->
+                    <!--    <option value="Patna"></option>-->
+                    <!--    <option value="Bihar"></option>-->
+                    <!--    <option value="Jharkhand"></option>-->
+                    <!--    <option value="Opera"></option>-->
+                    <!--    <option value="Safari"></option>-->
+                    <!--    <option value="Microsoft Edge"></option>-->
+                    <!--  </datalist>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-12">-->
+                    <!--  <label>-->
+                    <!--    <p>State</p>-->
+                    <!--    <input list="browsers" name="Nstate" class="form-control" />-->
+                    <!--  </label>-->
+                    <!--  <datalist id="browsers">-->
+                    <!--    <option value="Patna"></option>-->
+                    <!--    <option value="Bihar"></option>-->
+                    <!--    <option value="Jharkhand"></option>-->
+                    <!--    <option value="Opera"></option>-->
+                    <!--    <option value="Safari"></option>-->
+                    <!--    <option value="Microsoft Edge"></option>-->
+                    <!--  </datalist>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                <!--  <div class="form-group col-md-6">-->
+                <!--    <label for="inputEmail4">Relation</label>-->
+                <!--    <input type="text" name="Nrelation" class="form-control" id="inputEmail4" />-->
+                <!--  </div>-->
+                <!--  <div class="form-group col-md-6">-->
+                <!--    <label for="inputEmail4">Mobile No.</label>-->
+                <!--    <input type="text" name="Nmobile" class="form-control" id="inputEmail4" />-->
+                <!--  </div>-->
+                <!--  <div class="form-group col-md-6">-->
+                <!--    <label for="inputEmail4">Aadhar No</label>-->
+                <!--    <input type="text" name="Nadhar" class="form-control" id="inputEmail4" maxlength="12" />-->
+                <!--  </div>-->
+                <!--  <div class="form-group col-md-6">-->
+                <!--    <label for="inputEmail4">Document Upload</label>-->
+                <!--    <input type="file" name="Ndocument" class="form-control" id="inputEmail4" />-->
+                <!--  </div>-->
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <center>
+          <button type="submit" class="btn btn-primary" name="reg">SUBMIT</button>
+        </center>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  <script>
+    $(document).ready(function() {
+      // Function to calculate age
+      function calculateAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        return age;
+      }
+
+      // Event listener for the date of birth input
+      $('#dateinput3').change(function() {
+        var dob = $(this).val();
+        var age = calculateAge(dob);
+
+        // Set the calculated age in the age input field
+        $('#ageinput3').val(age);
+      });
+
+      // Event listener for the age input
+      $('#ageinput3').change(function() {
+        var age = $(this).val();
+
+        // Calculate the birth year based on the entered age
+        var birthYear = new Date().getFullYear() - age;
+
+        // Set the calculated birth year in the date of birth input field
+        $('#dateinput3').val(birthYear + '-01-01'); // Assuming January 1 for simplicity
+      });
+
+      // Event listener for the file input (for image preview)
+    })
+    function previewImage(input) {
+      var preview = document.getElementById('preview-image')
+      if (input.files && input.files[0]) {
+        var reader = new FileReader()
+        reader.onload = function (e) {
+          preview.src = e.target.result
+        }
+        reader.readAsDataURL(input.files[0])
+      } else {
+        preview.src = ''
+      }
+    }
+    
+    var fileInput = document.querySelector('input[name="Npic"]')
+    fileInput.addEventListener('change', function () {
+      previewImage(this)
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'basic.html' %}
+{% block title %}
+  list
+{% endblock %}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;" >
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-primary">Rate Wise Principal Amount
+    </h3>
+  </div>
+  <div class="page-breadcrumb">
+    <table class="table table-bordered">
+        <tr>
+            <th><h4 class="text-center">#</h4></th>
+            <th><h4 class="text-center">Rate</h4></th>
+            <th><h4 class="text-center">Amount</h4></th>
+            <th><h4 class="text-center">Monthly Income</h4></th>
+        </tr>
+        {% for intrest , amount in res %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{intrest}}</td>
+            
+            <td>{{amount}}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+  </div>
+</div>
+{% endblock %}

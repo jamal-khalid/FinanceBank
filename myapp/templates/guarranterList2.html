@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% block title %}
+  Guarranter List2
+{% endblock %}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;" >
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-primary">Second Guarranter List
+    </h3>
+  </div>
+  <div class="page-breadcrumb">
+    <table class="table table-bordered">
+        <tr>
+            <th >Name</th>
+            <th>Father</th>
+            <th>Area</th>
+            <th>Relation</th>
+            <th>Mobile</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>State</th>
+            <th>DOB</th>
+            <th>Action</th>
+
+        </tr>
+        {% for data in res %}
+        <tr>
+            <td>{{data.g2name}}</td>
+            <td>{{data.g2father_name}}</td>
+            <td>{{data.g2Area}}</td>
+            <td>{{data.g2Relation}}</td>
+            <td>{{data.g2Mobile_NO}}</td>
+            <td>{{data.g2Age}}</td>
+            <td>{{data.g2City}}</td>
+            <td>{{data.g2State}}</td>
+            <td>{{data.g2DOB}}</td>
+            <td>
+                <div>
+                    <a href="/guarranter-view2/{{data.g2name}}"><button class="btn-sm btn-primary">View</button></a>
+                </div>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+  </div>
+</div>
+{% endblock %}

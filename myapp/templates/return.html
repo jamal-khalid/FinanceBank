@@ -1,0 +1,341 @@
+{% extends "basic.html" %}
+{% block title %}Return{% endblock %}
+
+{% block body %}
+<div class="page-wrapper" style="background-color:white;">
+    <div class="container border">
+      <p>Monthly Loan</p>
+      <div class="container" style="background-color: aquamarine;">
+        <div class="row">
+          <div class="col-md-1">
+            <p style="margin-bottom: 0%;">Customer</p>
+          </div>
+          <div class="col-md-1">
+            <p style="margin-bottom: 0%;">report</p>
+          </div>
+          <div class="col-md-1">
+            <p style="margin-bottom: 0%;">Utility</p>
+          </div>
+          <div class="col-md-1">
+            <p style="margin-bottom: 0%;">About</p>
+          </div>
+          <div class="col-md-1">
+            <p style="margin-bottom: 0%;">Setting</p>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-2 border">
+        <div class="row">
+          <div class="col-md-1 p-1">
+            <button class="bg-light" id="myButton">{{res.account_no}}</button>
+          </div>
+          <div class="col-md-2 p1">
+            <h3 style="margin-left: 0;">{{res.name}}</h3>
+          </div>
+          <div class="col-md-2 p1 form-outline mt-1">
+            <input class="form-control" type="text" id="fatherName" placeholder="{{res.father_name}}" style="margin-bottom: 7px;" />
+          </div>
+          <div class="col-md-1 p1 mt-1">
+            <input class="form-control" type="text" id="fatherName" placeholder="{{res.city}}" />
+          </div>
+          <div class="col d-grid gap-2 d-md-flex justify-content-md-end mt-1">
+              <input class="form-control" type="text" id="fatherName" placeholder="All tran"  />
+              <button class="form-control btn-primary">PRINT</button>
+            <a href="/view-page/{{ res.account_no }}"><button class="btn btn-primary me-md-2" type="button">VIEW</button></a>
+            <a href="/payment-page/{{res.account_no}}"><button class="btn btn-success me-md-2" type="button">PAYMENT</button></a>
+            <button class="form-control btn-primary" type="button" id="fatherName" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="confirmOpenModal()">Start Fine</button>
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Start Fine</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 px-1 mb-1 mt-2">
+                        <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Acc No.</span></label>
+                        <input type="text" class="form-control mt-2" id="input1" value="{{res.account_no}}" style="height: 60px; font-size: large;" readonly />
+                      </div>
+                      <div class="col px-1 mb-1 mt-2">
+                        <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">Old Fine</span></label>
+                        <div class="form-control mt-2" id="input1" style="height: 60px;">
+                          <input class="form-control mt-1" value="{{NewFine}}" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" readonly />
+                        </div>
+                      </div>
+                    </div>
+                    <form id="paymentForm">
+                    <div class="row">
+                      <div class="col-md-8 px-1 mb-1 mt-2">
+                        <label for="input1" class="ms-2 position-absolute" style="margin-top: -0.25rem !important"><span class="h6 small bg-white text-muted px-1 fw-bold">New Fine</span></label>
+                        <div class="form-control mt-2" style="height: 60px;">
+                          <input name="newFine" id="newFine" class="form-control mt-1" type="text" placeholder="0.00" aria-label="default input example" style="font-size: large;" />
+                        </div>
+                        {% comment %} <input type="text" class="form-control mt-2" id="input1" placeholder="C001" style="height: 60px;" /> {% endcomment %}
+                      </div>
+                      <div class="col">
+                        <button type="button" onclick="updateFine('{{ res.account_no }}', 'return')" class="mt-3" style="width: 120px; height: 60px; border-color: white; font-size: large;"><i class="fas fa-save" style="font-size: x-large; padding-left: 0%;"></i>SAVE</button>
+                      </div>
+                    </div>
+                    </form>
+                    <hr />
+                    <div class="row">
+                      <div class="col">
+                        <p class="text-center">Rs 0.00 will be applied on Rs 1.00.000.00 by per Day</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-2">
+        <form action="{% url 'return-page' res.account_no %}" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-3 border">
+              <div class="row">
+                <p class="fw-bold" style="margin-bottom: 0%;">New Entry</p>
+                  
+
+                <div class="col-md-6" style="margin-top: 6px; margin-left: 6px;">
+                  <input name="date" id='date' type="date" required />
+                </div>
+                <div class="col" style="margin-left: 0%;">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle border m-1 ms-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cash</button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="#">Action</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Another action</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-1 border">
+                <div class="row m-1">
+                  <p class="text-sm fw-bold" style="margin-bottom: 0%;">Pricipal Amount</p>
+                  <div class="col">
+                    <input name="pamount" type="text" class="form-control" value="{{returnDataLast.principal_amount}}" />
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-1">
+                <div class="row">
+                  <div class="col">
+                    <label for="form-label">Intrest</label>
+                    <input type="number" name="intrestAmount" class="form-control" value="0" />
+                  </div>
+                  <div class="col">
+                    <label for="">Discount</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Advance</label>
+                    <input type="text" class="form-control" name="" id="" />
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-1">
+                <div class="row">
+                  <div class="col">
+                    <label for="form-label">Fine</label>
+                    <input type="text" name='rfine' value="{{returnDataLast.fine}}" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Discount</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Advance</label>
+                    <input type="text" class="form-control" name="" id="" />
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2">
+                <label for="re" class="form-label form-label-sm fw-bold">Remarks</label>
+                <textarea style="height: 180px; width: 220px;" name="remark" id="re" cols="30" rows="10"></textarea>
+              </div>
+              
+              <div class="row mt-2">
+                <button type="submit" value="SAVE" class="btn btn-warning">RETURN</button>
+              </div>
+            </div>
+            <div class="col border ms-2">
+              <p class="fw-bold" style="margin-bottom: 0%;">Dues</p>
+              <div class="container border mt-1">
+                <div class="row mt-2" style="margin-bottom: 8px;">
+                  <div class="col">
+                    <div class="form-outline">
+                      <label for="form12" class="form-label">Principal</label>
+                      <input id="form12" value="{{amount}}" type="text" class="form-control" readonly />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label for="int" class="form-label">Intrest</label>
+                    <input type="text" value="{{Rint}}" class="form-control" name="" id="int" readonly />
+                  </div>
+                  <div class="col">
+                    <label for="ad" class="form-label">Advance</label>
+                    <input type="text" class="form-control" name="" id="ad" value="0" readonly />
+                  </div>
+                  <div class="col">
+                    <label for="time" class="form-label">Fine</label>
+                    <input type="text" class="form-control" name="" id="time" value="{{NewFine}}" readonly />
+                  </div>
+                  
+                  
+                  
+                </div>
+              </div>
+              <div class="container mt-1">
+                <p class="mt-1 fw-bold" style="margin-bottom: 0%;">Intrest</p>
+                <div class="row">
+                  <div class="col-md-6 border mt-2" style="margin-right: 8px; height: 420px;">
+                    <div class="page-breadcrumb">
+                      <table class="table table-bordered mt-2">
+                        <tr>
+                          <th>#</th>
+                          <th>Date</th>
+                          <th>Amount</th>
+                          <th>Discount</th>
+                          <th>Remarks</th>
+                        </tr>
+                        <tr>
+                            <th>--</th>
+                            <th>--</th>
+                            <th>--</th>
+                            <th>--</th>
+                            <th>--</th>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-md-5 container" style="height: 200px;">
+                    <!--<p class="fw-bold" style="margin-bottom: 0%; margin-top: 0%;">Payment</p>-->
+                    <div class="row border" style="height: 200px;">
+                      <div class="page-breadcrumb mt-2" style="overflow:hidden; height:172px">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>(%)</th>
+                            <th>Remarks</th>
+                          </tr>
+                          {% for data in paymentData %}
+                          <tr>
+                              <td>{{data.date}}</td>
+                              <td>{{data.principal_amount}}</td>
+                              <td>{{data.intrest}}</td>
+                              <td>--</td>
+                          </tr>
+                          {% endfor %}
+                        </table>
+                      </div>
+                    </div>
+                    <!--<p class="fw-bold" style="margin-bottom: 0%; margin-top: 0%;">Return</p>-->
+                    <div class="row border mt-2" style="height: 170px;">
+                      <div class="page-breadcrumb mt-2" style="overflow:hidden; height:159px;">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Remarks</th>
+                          </tr>
+                          {% for data in returnData %}
+                          <tr>
+                              <td>-</td>
+                              <td>{{data.date}}</td>
+                              <td>{{data.principal_amount}}</td>
+                              <td>-</td>
+                          </tr>
+                          {% endfor %}
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container mt-2 mb-2">
+      <div class="row">
+        <div class="col">
+          
+          <!--<button class="btn btn-success">ALL TRANSACTION</button>-->
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    function getCurrentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+        // Set the default value of the date input field to the current date
+    document.getElementById('date').value = getCurrentDate();
+    
+    function confirmOpenModal() {
+    var confirmed = window.confirm("Are you sure you want to Start the Fine..?");
+    if (confirmed) {
+      updateModalContent();
+      $('#exampleModal1').modal('show');
+    } else {
+      window.location.href = "/return-page/{{ res.account_no }}";
+    }
+  }
+  function updateModalContent() {
+  }
+    
+    accountNo="{{res.account_no}}"
+    page="/return-page/{{res.account_no}}"
+    function updateFine(accountNo, page) {
+      var newFine = $('#newFine').val();
+    
+      $.ajax({
+        type: 'POST',
+        url: '{% url "update_fine" Account_no=0 %}'.replace('0', accountNo),
+        data: {
+          'newFine': newFine,
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function(response) {
+          if (response.success) {
+            // Update content on the current page
+            $('#fineDisplay').text('New Fine: ' + response.new_fine);
+    
+            // Optionally, redirect to another page if needed
+            if (page === 'return') {
+              window.location.href = '{% url "return-page" res.account_no %}';
+            }
+          } else {
+            alert('Failed to update fine.');
+          }
+        },
+        error: function() {
+          alert('An error occurred.');
+        }
+      });
+    }
+</script>
+{% endblock %}

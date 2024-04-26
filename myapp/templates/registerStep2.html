@@ -1,0 +1,366 @@
+{% extends 'basic.html' %}
+{% block title %}
+  Guarranter
+{% endblock %}
+{% block body %}
+<div class="page-wrapper" style="background-color: white;">
+  <div class="container-fluid">
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <!--   <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>   -->
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-1">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Guarantor</h6>
+            </div>
+            <form method="post" enctype="multipart/form-data" action="{% url 'registration_view' 2 %}">{% csrf_token %}
+              <div class="card-body">
+                <div classs="container-fluid">
+                  <div class="row">
+                    <div style="border: 1px solid;padding:10px;" class="col-md-6">
+                      <div class="row">
+                          <div class="col-auto border" style="background-color: #f13b07; height: 26px; border-radius: 7px;">
+                            <p class="text-light">Guarantor 1</p>
+                          </div>                            
+                      </div>
+                      <div class="row">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                              <label for="inputEmail4">Name</label>
+                              <input type="text" name="gname" class="form-control" id="inputEmail4" />
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label for="inputEmail4">Father Name</label>
+                              <input type="text" name="gfname" class="form-control" id="inputEmail4" />
+                            </div>
+                            <div style="margin-left:10px;" class="row">
+                              <div class="form-group col-md-8">
+                                <label for="inputEmail4">Date Of Birth</label>
+                                <input type="date" name="gdob" class="form-control" id="dateinput1" required />
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="inputEmail4">Age</label>
+                                <input type="text" name="gage" class="form-control" id="ageinput1" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6" align="center">
+                            <img id="gpreview-image" class="img" src="" height="180px;" width="250px;" />
+                            <input onchange="previewImage(this, 'gpreview-image')" type="file" name="gpic" class="form-control" id="inputPassword4" required="" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Address</label>
+                          <textarea name="gadres" rows="1" cols="5" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <div class="col-md-12">
+                            <label>
+                              <p>State</p>
+                              <input list="browsers" name="gstate" class="form-control" />
+                            </label>
+                            <datalist id="browsers">
+                              <option value="Patna"></option>
+                              <option value="Bihar"></option>
+                              <option value="Jharkhand"></option>
+                              <option value="Opera"></option>
+                              <option value="Safari"></option>
+                              <option value="Microsoft Edge"></option>
+                            </datalist>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Relation</label>
+                          <input type="text" name="grelation" class="form-control" id="inputEmail4" />
+                        </div>
+                        <div class="col-md-6">
+                          <label>
+                            <p>City</p>
+                            <input list="browsers" name="gcity" class="form-control" />
+                          </label>
+                          <datalist id="browsers">
+                            <option value="Patna"></option>
+                            <option value="Bihar"></option>
+                            <option value="Jharkhand"></option>
+                            <option value="Opera"></option>
+                            <option value="Safari"></option>
+                            <option value="Microsoft Edge"></option>
+                          </datalist>
+                        </div>
+                      </div>
+                        <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Aadhar No</label>
+                          <input type="text" name="gadhar" class="form-control" id="inputEmail4" maxlength="12" />
+                        </div>
+                        <div class="col-md-6">
+                          <label>
+                            <p>District</p>
+                            <input list="browsers" name="gdistrict" class="form-control" />
+                          </label>
+                          <datalist id="browsers">
+                            <option value="Patna"></option>
+                            <option value="Bihar"></option>
+                            <option value="Jharkhand"></option>
+                            <option value="Opera"></option>
+                            <option value="Safari"></option>
+                            <option value="Microsoft Edge"></option>
+                          </datalist>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Mobile No.</label>
+                          <input type="text" name="gmobile" class="form-control" id="inputEmail4" />
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Document Upload</label>
+                          <input type="file" name="gdocument" class="form-control" id="inputEmail4" multiple/>
+                        </div>
+                        </div>
+                      </div>
+                      <!--<div class="row">-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Relation</label>-->
+                      <!--    <input type="text" name="grelation" class="form-control" id="inputEmail4" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Mobile No.</label>-->
+                      <!--    <input type="text" name="gmobile" class="form-control" id="inputEmail4" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Aadhar No</label>-->
+                      <!--    <input type="text" name="gadhar" class="form-control" id="inputEmail4" maxlength="12" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Document Upload</label>-->
+                      <!--    <input type="file" name="gdocument" class="form-control" id="inputEmail4" multiple />-->
+                      <!--  </div>-->
+                      <!--</div>-->
+                    </div>
+                    <div style="border: 1px solid;padding:10px;" class="col-md-6">
+                      <div class="row">
+                          <div class="col-auto border" style="background-color: #f13b07; height: 26px; border-radius: 7px;">
+                            <p class="text-light">Guarantor 2</p>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                              <label for="inputEmail4">Name</label>
+                              <input type="text" name="g2name" class="form-control" id="inputEmail4" />
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label for="inputEmail4">Father Name</label>
+                              <input type="text" name="g2fname" class="form-control" id="inputEmail4" />
+                            </div>
+                            <div style="margin-left:10px;" class="row">
+                              <div class="form-group col-md-8">
+                                <label for="inputEmail4">Date Of Birth</label>
+                                <input type="date" name="g2dob" class="form-control" id="dateinput2" required />
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="inputEmail4">Age</label>
+                                <input type="text" name="g2age" class="form-control" id="ageinput2" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6" align="center">
+                            <img id="gpreview-image2" class="img" src="" height="180px;" width="250px;" />
+                            <input onchange="previewImage(this, 'gpreview-image2')" type="file" name="g2pic" class="form-control" id="inputPassword4" required="" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Address</label>
+                          <textarea name="g2adres" rows="1" cols="5" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <div class="col-md-12">
+                            <label>
+                              <p>State</p>
+                              <input list="browsers" name="g2state" class="form-control" />
+                            </label>
+                            <datalist id="browsers">
+                              <option value="Patna"></option>
+                              <option value="Bihar"></option>
+                              <option value="Jharkhand"></option>
+                              <option value="Opera"></option>
+                              <option value="Safari"></option>
+                              <option value="Microsoft Edge"></option>
+                            </datalist>
+                          </div>
+                      </div>
+                        <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Relation</label>
+                          <input type="text" name="g2relation" class="form-control" id="inputEmail4" />
+                        </div>
+                        <div class="col-md-6">
+                          <label>
+                            <p>City</p>
+                            <input list="browsers" name="g2city" class="form-control" />
+                          </label>
+                          <datalist id="browsers">
+                            <option value="Patna"></option>
+                            <option value="Bihar"></option>
+                            <option value="Jharkhand"></option>
+                            <option value="Opera"></option>
+                            <option value="Safari"></option>
+                            <option value="Microsoft Edge"></option>
+                          </datalist>
+                        </div>
+                      </div>
+                       <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Aadhar No</label>
+                          <input type="text" name="g2adhar" class="form-control" id="inputEmail4" />
+                        </div>
+                        <div class="col-md-6">
+                          <label>
+                            <p>District</p>
+                            <input list="browsers" name="g2district" class="form-control" />
+                          </label>
+                          <datalist id="browsers">
+                            <option value="Patna"></option>
+                            <option value="Bihar"></option>
+                            <option value="Jharkhand"></option>
+                            <option value="Opera"></option>
+                            <option value="Safari"></option>
+                            <option value="Microsoft Edge"></option>
+                          </datalist>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Mobile No.</label>
+                          <input type="text" name="g2mobile" class="form-control" id="inputEmail4" />
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Document Upload</label>
+                          <input type="file" name="g2document" class="form-control" id="inputEmail4" multiple />
+                        </div>
+                        </div>
+                      </div>
+                      <!--<div class="row">-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Relation</label>-->
+                      <!--    <input type="text" name="g2relation" class="form-control" id="inputEmail4" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Mobile No.</label>-->
+                      <!--    <input type="text" name="g2mobile" class="form-control" id="inputEmail4" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Aadhar No</label>-->
+                      <!--    <input type="text" name="g2adhar" class="form-control" id="inputEmail4" maxlength="12" />-->
+                      <!--  </div>-->
+                      <!--  <div class="form-group col-md-6">-->
+                      <!--    <label for="inputEmail4">Document Upload</label>-->
+                      <!--    <input type="file" name="g2document" class="form-control" id="inputEmail4" multiple />-->
+                      <!--  </div>-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <center>
+                <button type="submit" class="btn btn-primary" >SUBMIT AND NEXT</button>
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  <script>
+    $(document).ready(function() {
+      // Function to calculate age
+      function calculateAge(dateString) {
+          var today = new Date();
+          var birthDate = new Date(dateString);
+          var age = today.getFullYear() - birthDate.getFullYear();
+          var monthDiff = today.getMonth() - birthDate.getMonth();
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+              age--;
+          }
+          return age;
+      }
+  
+      // Event listener for the first date of birth input
+      $('#dateinput1').change(function() {
+          var dob = $(this).val();
+          var age = calculateAge(dob);
+  
+          // Set the calculated age in the first age input field
+          $('#ageinput1').val(age);
+      });
+  
+      // Event listener for the first age input
+      $('#ageinput1').change(function() {
+          var age = $(this).val();
+  
+          // Calculate the birth year based on the entered age
+          var birthYear = new Date().getFullYear() - age;
+  
+          // Set the calculated birth year in the first date of birth input field
+          $('#dateinput1').val(birthYear + '-01-01'); // Assuming January 1 for simplicity
+      });
+  
+      // Event listener for the second date of birth input
+      $('#dateinput2').change(function() {
+          var dob = $(this).val();
+          var age = calculateAge(dob);
+  
+          // Set the calculated age in the second age input field
+          $('#ageinput2').val(age);
+      });
+  
+      // Event listener for the second age input
+      $('#ageinput2').change(function() {
+          var age = $(this).val();
+  
+          // Calculate the birth year based on the entered age
+          var birthYear = new Date().getFullYear() - age;
+  
+          // Set the calculated birth year in the second date of birth input field
+          $('#dateinput2').val(birthYear + '-01-01'); // Assuming January 1 for simplicity
+      });
+
+      // Event listener for the file input (for image preview)
+  });
+    function previewImage(input, previewId) {
+      var preview = document.getElementById(previewId)
+      if (input.files && input.files[0]) {
+        var reader = new FileReader()
+        reader.onload = function (e) {
+          preview.src = e.target.result
+        }
+        reader.readAsDataURL(input.files[0])
+      } else {
+        preview.src = ''
+      }
+    }
+
+</script>
+{% endblock %}

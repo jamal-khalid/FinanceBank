@@ -1,0 +1,6 @@
+/* styles.css */
+body {
+    background-image: url('/static/src/download.jpeg');
+    background-size: cover; /* You can adjust the background size as needed */
+    /* Additional CSS properties for the background image */
+}

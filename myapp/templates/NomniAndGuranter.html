@@ -1,0 +1,177 @@
+{% extends 'basic.html' %}
+{% block title %}
+  list
+{% endblock %}
+{% block body %}
+  <div class="page-wrapper" style="background-color: white;">
+    <div class="container">
+      <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-primary">Customer Detail</h3>
+      </div>
+      <div class="page-breadcrumb">
+        <table class="table table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Mother</th>
+            <th>Type</th>
+            <th>limit</th>
+            <th>ROI</th>
+            <th>mobile</th>
+            <th>City</th>
+            <th>DOB</th>
+            <th>state</th>
+            <th>Img</th>
+          </tr>
+          {% for data in res %}
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.father_name }}</td>
+              <td>{{ data.gender }}</td>
+              <td>Customer</td>
+              <td>{{ data.limit }}</td>
+              <td>{{ data.rate_of_interest }}</td>
+              <td>{{ data.mobile }}</td>
+              <td>{{ data.city }}</td>
+              <td>{{ data.Date_of_birth }}</td>
+              <td>{{ data.state}}</td>
+              <td>{{data.image}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-primary">Guarranter Detail</h3>
+      </div>
+      <div class="page-breadcrumb">
+        <div>
+            <h4>Guarranter First</h4>
+        </div>
+        <table class="table table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Age</th>
+            <th>Type</th>
+            <th>Relation</th>
+            <th>Mobile</th>
+            <th>Adhar</th>
+            <th>City</th>
+            <th>DOB</th>
+            <th>State</th>
+            <th>Document</th>
+          </tr>
+          {% for data in res %}
+            <tr>
+              <td>{{ data.g1name }}</td>
+              <td>{{ data.g1father_name }}</td>
+              <td>{{ data.g1Age }}</td>
+              <td>Guarranter 1</td>
+              <td>{{ data.g1Relation }}</td>
+              <td>{{ data.g1Mobile_NO }}</td>
+              <td>{{ data.g1Adhar_no }}</td>
+              <td>{{ data.g1City }}</td>
+              <td>{{ data.g1DOB }}</td>
+              <td>{{ data.g1State }}</td>
+              <td>{{data.g1Document}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="page-breadcrumb">
+        <div>
+            <h4>Guarranter Second</h4>
+        </div>
+        <table class="table table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Father</th>
+            <th>Age</th>
+            <th>Type</th>
+            <th>Relation</th>
+            <th>Mobile</th>
+            <th>Adhar</th>
+            <th>City</th>
+            <th>DOB</th>
+            <th>State</th>
+            <th>Document</th>
+            
+          </tr>
+          {% for data in res %}
+            <tr>
+              <td>{{ data.g2name }}</td>
+              <td>{{ data.g2father_name }}</td>
+              <td>{{ data.g2Age }}</td>
+              <td>Guarranter 2</td>
+              <td>{{ data.g2Relation }}</td>
+              <td>{{ data.g2Mobile_NO }}</td>
+              <td>{{data.g2Adhar_no}}</td>
+              <td>{{ data.g2City }}</td>
+              <td>{{ data.g2DOB }}</td>
+              <td>{{ data.g2State }}</td>
+              <td>{{data.g2Document}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="container">
+        <div class="card-header py-3">
+          <h3 class="m-0 font-weight-bold text-primary">Nomnee Detail</h3>
+        </div>
+        <div class="page-breadcrumb">
+          <table class="table table-bordered">
+            <tr>
+              <th>Name</th>
+              <th>Father</th>
+              <th>Mother</th>
+              <th>Type</th>
+              <th>Relation</th>
+              <th>Mobile</th>
+              <th>Adhar</th>
+              <th>City</th>
+              <th>DOB</th>
+              <th>state</th>
+              <th>Document&Img</th>
+            </tr>
+            {% for data in res %}
+              <tr>
+                <td>{{ data.nName }}</td>
+                <td>{{ data.nFather_name }}</td>
+                <td>{{ data.nMother_name }}</td>
+                <td>Nomnee</td>
+                <td>{{ data.nRelation }}</td>
+                <td>{{ data.nMobile_no }}</td>
+                <td>{{ data.nAdhar_Number }}</td>
+                <td>{{ data.nCity }}</td>
+                <td>{{ data.nDOB }}</td>
+                <td>{{ data.nState }}</td>
+                <td><a href="/image/{{data.id}}" >View</a></td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  function showDocument(documentUrl) {
+    // Clear the existing content in the documentViewer div
+    document.getElementById('documentViewer').innerHTML = '';
+
+    // Create an iframe element
+    var iframeElement = document.createElement('iframe');
+    iframeElement.src = documentUrl;
+    iframeElement.style.width = '100%';
+    iframeElement.style.height = '500px'; // Adjust the height as needed
+
+    // Append the iframe to the documentViewer div
+    document.getElementById('documentViewer').appendChild(iframeElement);
+  }
+</script>
+{% endblock %}

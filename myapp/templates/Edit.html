@@ -1,0 +1,251 @@
+{% extends 'basic.html' %}
+{% block title %}
+  register
+{% endblock %}
+{% block css %}
+<style>
+  .form-control{
+    border: 2px solid #e9ecef;
+  }
+</style>
+{% endblock %}
+{% block body %}
+  <div class="page-wrapper mt-3 mb-3 " style="background-color:white;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 border" style="border-radius: 20px; background-color: #f13b07; box-sizing: border-box; height: 35px;" >
+          <h3 class="text-light " style="padding-bottom: 0px;">Customer Registration</h3>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2 border " style="border-radius: 20px; background-color: #f13b07; box-sizing: border-box; height: 35px;">
+          <h3 class="text-light " style="padding: 0px;">Monthly Plan</h3>
+        </div>
+        
+        <div class="col-md-1"></div>
+        <div class="col">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="inputPassword6" class="col-form-label" style="font-size:medium;">Select Person</label>
+            </div>
+            <div class="col">
+              <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mt-1" style="border: 1px solid; margin-left: 4px; margin-right: 4px;">
+      <form method="post" action="/edit/{{res.account_no}}/" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label  for="name" class="col-form-label" style="font-size: larger;">Customer Name</label>
+                </div>
+                <div class="col">
+                  <input name="rname" value="{{res.name}}" type="text" id="name" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="fname" class="col-form-label" style="font-size: larger;">Father's  Name</label>
+                </div>
+                <div class="col">
+                  <input name="father_name" type="text" value="{{res.father_name}}" id="fname" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="row">
+                <div class="form-group col-auto">
+                  <label for="dateinput">Date Of Birth</label>
+                  <input type="date" value="{{ formatted_date }}" name="rdob" class="form-control" id="dateinput" required />
+                </div>
+                <div class="form-group col-auto">
+                  <label for="ageinput">Age</label>
+                  <input type="text" value="{{res.age}}" name="age" class="form-control" id="ageinput" />
+                </div>
+                <div class="col-auto mt-4">
+                  <label for="inputEmail4">Gender</label>
+                </div>
+                <div class="col" style="padding: 10px; border: 1px solid;margin:10px;">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" {% if res.gender == "Male" %}checked{% endif %} />
+                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female" {% if res.gender == "Female" %}checked{% endif %} />
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="Othher" {% if res.gender == "Othher" %}checked{% endif %} />
+                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="professionInput" class="col-form-label" style="font-size: larger;">Profession</label>
+                </div>
+                <div class="col-md-5">
+                  <input name="profession" type="text" value="{{res.profession}}" id="professionInput" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                  <label for="emailInput" class="col-form-label" style="font-size: larger;">Email</label>
+                </div>
+                <div class="col">
+                  <input name="email" type="email" value="{{res.email}}" id="emailInput" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row g-3 align-items-center mt-1">
+                <div class="col-auto">
+                  <label for="mobileInput" class="col-form-label" style="font-size: larger;">Mobile no.</label>
+                </div>
+                <div class="col-md-5">
+                  <input name="mobile" value="{{res.mobile}}" type="text" id="mobileInput" class="form-control" aria-describedby="passwordHelpInline" oninput="validateNumber(this)">
+                </div>
+                <div class="col-auto">
+                  <label for="altermobileInput" class="col-form-label" style="font-size: larger;">Alternate Mobile no</label>
+                </div>
+                <div class="col">
+                  <input name="alter_mobile" type="text" value="{{res.alter_mobile}}" id="altermobileInput" class="form-control" aria-describedby="passwordHelpInline" oninput="validateNumber(this)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mt-2" align="center">
+            <img  id="preview-image" class="img" src="{{ res.image.url }}" height="270px;" width="250px;" />
+            <input type="file" name="pic" value="{{res.image}}"   class="form-control" id="inputPassword4"  />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="permanentInput" class="col-form-label" style="font-size: larger;">Permanent Address</label>
+            </div>
+            <div class="col-md-6">
+              <input name="address" type="text" value="{{res.address}}" id="permanentInput" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="cityInput" class="col-form-label" style="font-size: larger;">City</label>
+            </div>
+            <div class="col">
+              <input name="city" type="text" value="{{res.city}}" id="cityInput" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="districtinput" class="col-form-label" style="font-size: larger;">District</label>
+            </div>
+            <div class="col-md-4">
+              <input name="district" type="text" value="{{res.district}}" id="districtinput" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="stateInput" class="col-form-label" style="font-size: larger;">State</label>
+            </div>
+            <div class="col-md-4">
+              <input name="state" type="text" value="{{res.state}}" id="stateInput" class="form-control" aria-describedby="passwordHelpInline">
+            </div> 
+            <div class="col-auto">
+              <label for="pinInput" class="col-form-label" style="font-size: larger;">Pin</label>
+            </div>
+            <div class="col">
+              <input name="pin" type="text" value="{{res.pinCode}}" id="pinInput" class="form-control" aria-describedby="passwordHelpInline" oninput="validatePincode(this)">
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row g-3 align-items-center mt-1">
+            <div class="col-auto">
+              <label for="remarksInput" class="col-form-label" style="font-size: larger;">Remarks</label>
+            </div>
+            <div class="col-md-6">
+              <textarea name="remarks" id="remarksInput" class="form-control" aria-describedby="passwordHelpInline">{{res.remarks}}</textarea>
+            </div> 
+            <div class="col-auto">
+              <label for="uploadInput" class="col-form-label" style="font-size: larger;">Upload Document</label>
+            </div>
+            <div class="col">
+                <input name="document" type="file" id="uploadInput" class="form-control" aria-describedby="passwordHelpInline" onchange="updateFileName()">
+                <div id="fileNameDisplay"></div>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3" style="margin-bottom: 10px;">
+        <div class="col-md-6">
+          </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary my-2" name="reg">Update</button>
+        </form>
+          <a href="/"><button class="btn btn-primary">Back</button></a>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('preview-image');
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            preview.src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          preview.src = '';
+        }
+      }
+
+      var fileInput = document.querySelector('input[name="pic"]');
+      fileInput.addEventListener('change', function() {
+        previewImage(this);
+      });
+
+      function updateFileName() {
+        const input = document.getElementById('uploadInput');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+      
+        if (input.files.length > 0) {
+          const fileName = input.files[0].name;
+          fileNameDisplay.textContent = `Selected File: ${fileName}`;
+        } else {
+          const defaultValue = input.value.split('\\').pop(); // Get the filename from the path
+          fileNameDisplay.textContent = `Default File: ${defaultValue || 'None'}`;
+        }
+      }
+</script>
+{% endblock %}
